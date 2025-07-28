@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Zap, Heart } from 'lucide-react';
 import AnimatedSection from '../AnimatedSection';
+import HolographicCard from '../3D/HolographicCard';
+import InteractiveGeometry from '../3D/InteractiveGeometry';
 
 const AboutSection: React.FC = () => {
   const skills = [
@@ -33,6 +35,11 @@ const AboutSection: React.FC = () => {
 
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-900">
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-10">
+        <InteractiveGeometry />
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection direction="left">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-16">
@@ -71,19 +78,26 @@ const AboutSection: React.FC = () => {
               className="grid grid-cols-2 gap-6"
             >
               {skills.map((skill, index) => (
-                <motion.div
+                <HolographicCard
                   key={skill.name}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300"
+                  className="rounded-xl"
                 >
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${skill.color} flex items-center justify-center mb-4`}>
-                    <skill.icon size={24} className="text-white" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    {skill.name}
-                  </h3>
-                </motion.div>
+                  <motion.div
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.05, y: -5, rotateY: 10 }}
+                    className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300"
+                  >
+                    <motion.div 
+                      whileHover={{ rotateY: 180, scale: 1.1 }}
+                      className={`w-12 h-12 rounded-lg bg-gradient-to-br ${skill.color} flex items-center justify-center mb-4`}
+                    >
+                      <skill.icon size={24} className="text-white" />
+                    </motion.div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {skill.name}
+                    </h3>
+                  </motion.div>
+                </HolographicCard>
               ))}
             </motion.div>
           </AnimatedSection>

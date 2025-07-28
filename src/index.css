@@ -164,3 +164,103 @@ html {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* 3D Animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradient 4s ease infinite;
+}
+
+/* Enhanced 3D transforms */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Holographic effects */
+.holographic {
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+  background-size: 200% 200%;
+  animation: holographic-shine 3s ease-in-out infinite;
+}
+
+@keyframes holographic-shine {
+  0% { background-position: -200% -200%; }
+  50% { background-position: 200% 200%; }
+  100% { background-position: -200% -200%; }
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-1 0.5s infinite;
+  color: #ff0000;
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.5s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
+  15%, 49% { transform: translate(-2px, 2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
+  21%, 62% { transform: translate(2px, -2px); }
+}
+
+/* Neon glow */
+.neon-glow {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+}
+
+/* Particle trail */
+.particle-trail {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle-trail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: particle-sweep 2s infinite;
+}
+
+@keyframes particle-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}

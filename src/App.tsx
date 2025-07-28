@@ -11,6 +11,7 @@ import TasksSection from './components/sections/TasksSection';
 import ChatBot from './components/chatbot/ChatBot';
 import ParticleBackground from './components/3D/ParticleBackground';
 import FloatingElements from './components/3D/FloatingElements';
+import InteractiveGeometry from './components/3D/InteractiveGeometry';
 import LoginForm from './components/auth/LoginForm';
 import SignupForm from './components/auth/SignupForm';
 
@@ -22,6 +23,9 @@ const MainPage: React.FC = () => {
       {/* 3D Background Elements */}
       <ParticleBackground />
       <FloatingElements />
+      <div className="absolute inset-0 opacity-5">
+        <InteractiveGeometry />
+      </div>
       
       <StickyNavbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
